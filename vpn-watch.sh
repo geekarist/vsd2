@@ -9,13 +9,13 @@ while :; do
 	mylocation=$(curl -Ss wtfismyip.com/json | jq -r .YourFuckingLocation)
 
 	if echo "$mylocation" | grep -q "Netherlands"; then
-		echo They think we\'re in $mylocation: making sure the torrent service is started...
+		echo "$(date): They think we're in $mylocation: making sure the torrent service is started..."
 		servicestatus=$(service transmission-daemon status)
 		if !(echo "$servicestatus" | grep -q 'start/running'); then
 			service transmission-daemon start
 		fi
 	else
-		echo They think we\'re in $mylocation: stopping the torrent service...
+		echo "$(date): They think we're in $mylocation: stopping the torrent service..."
 		servicestatus=$(service transmission-daemon status)
 		if (echo "$servicestatus" | grep -q 'start/running'); then
 			service transmission-daemon stop
