@@ -70,6 +70,7 @@ Vagrant.configure(2) do |config|
      sudo apt-get install --yes --force-yes jq curl transmission-daemon openvpn
 	 sudo service transmission-daemon stop
 	 sudo sed -i 's/"rpc-whitelist-enabled": true/"rpc-whitelist-enabled": false/g' /etc/transmission-daemon/settings.json
+	 sudo sed -i 's|/var/lib/transmission-daemon/downloads|/vagrant/downloads|g' /etc/transmission-daemon/settings.json
 	 sudo service transmission-daemon start
    SHELL
 
